@@ -1,0 +1,39 @@
+
+
+.custom-navbar {
+    background-color: black;
+}
+
+.custom-button {
+    background-color: red; 
+    border-color: red; 
+    color: white; 
+}
+.letter-custom{
+    color: white;
+    font-weight: bold;
+}
+.custom-button:hover {
+    background-color: darkred; 
+    border-color: darkred; 
+}
+
+.custom-navbar {
+    background-color: #000; 
+    transition: background-color 0.3s; 
+}
+
+.scrolled-navbar {
+    background-color: #fff;
+    transition: background-color 0.3s; 
+}
+
+
+.letter-custom {
+    color: #fff; 
+}
+
+.scrolled-navbar .letter-custom {
+    color: #000; 
+}
+

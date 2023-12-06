@@ -1,0 +1,11 @@
+.Caousel {
+    display: flex;
+    justify-content: space-around;
+    background-color: brown;
+    width: 100%;
+}
+
+.Caousel img {
+    width: 50%; 
+    height: auto;
+}
