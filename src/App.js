@@ -4,11 +4,12 @@ import Login from './Componentes/Screens/Login';
 import Inicio from './Componentes/Screens/Inicio';
 import Menu from './Componentes/Screens/Subcomponentes/Menu';  
 import Footer from './Componentes/Screens/Subcomponentes/Footer';
+//import {KeycloakProvider} from './Componentes/Context/ContextKeyClock'
 
 function App() {
   return (
     <div className="App">
-      
+
       <Router>
         <Menu/>
         <Routes>
@@ -17,6 +18,8 @@ function App() {
         </Routes>
         <Footer/>
       </Router>
+
+
     </div>
   );
 }
