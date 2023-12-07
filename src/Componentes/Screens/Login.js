@@ -4,7 +4,7 @@ import { Button, Form, Container, Row, Col } from 'react-bootstrap';
 import '../../Componentes/Estilos/Login.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import keycloak from '../Context/ContextKeyClock'; // Asegúrate de que la ruta sea correcta
+import keycloak from '../Context/ContextKeyClock';
 
 function Login() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -15,7 +15,7 @@ function Login() {
         const updateAuthenticationStatus = () => {
             setIsAuthenticated(keycloak.authenticated);
             if (keycloak.authenticated) {
-                // Redirige y recarga la página
+
                 window.location.href = '/';
             }
         };
@@ -43,11 +43,9 @@ function Login() {
                     <div className="login-form" data-aos="zoom-in">
                         <h2 className="text-center mb-4">Iniciar Sesión</h2>
                         <Form>
-                            {/* Tus campos de formulario aquí */}
                             <Button className="w-100 mb-3 custom-login-button" onClick={handleLogin}>
                                 Iniciar Sesión
                             </Button>
-                            {/* Tus otros botones de inicio de sesión aquí */}
                         </Form>
                     </div>
                 </Col>

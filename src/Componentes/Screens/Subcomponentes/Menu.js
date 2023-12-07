@@ -1,4 +1,3 @@
-// Menu.js
 import React, { useState, useEffect } from "react";
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
