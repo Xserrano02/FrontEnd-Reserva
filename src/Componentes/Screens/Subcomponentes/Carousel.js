@@ -9,8 +9,8 @@ const CarCarousel = () => {
         'https://img.freepik.com/foto-gratis/vista-coche-3d_23-2150796904.jpg?size=626&ext=jpg',
         'https://img.freepik.com/foto-gratis/vista-coche-3d_23-2150796894.jpg?w=826&t=st=1701977957~exp=1701978557~hmac=79909f78820e0fb3e6fd1f0cdcd44328fea1e7a3cf5fc1f3aa1d7207effdeb25',
         'https://img.freepik.com/foto-gratis/coche-3d-fondo-simple_23-2150796868.jpg?w=826&t=st=1701978281~exp=1701978881~hmac=bab693116369e5c38ccfa5a34b367bdeba9b8b012bdd625cefc2907219a29040',
-        'https://scontent.fsal10-1.fna.fbcdn.net/v/t39.30808-6/269996455_6897252920345469_8448645946301659581_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=173fa1&_nc_ohc=PqCByIoLOfEAX90USUq&_nc_ht=scontent.fsal10-1.fna&oh=00_AfCjDLslXVWfJ-gYvweHbRV85ggM247M7A_rXimZv1FLQA&oe=65767F80',
-        'https://scontent.fsal10-1.fna.fbcdn.net/v/t39.30808-6/269996455_6897252920345469_8448645946301659581_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=173fa1&_nc_ohc=PqCByIoLOfEAX90USUq&_nc_ht=scontent.fsal10-1.fna&oh=00_AfCjDLslXVWfJ-gYvweHbRV85ggM247M7A_rXimZv1FLQA&oe=65767F80'
+        'https://img.freepik.com/foto-gratis/coche-3d-fondo-simple_23-2150797048.jpg?w=826&t=st=1701978771~exp=1701979371~hmac=451041d653147f114f9ec7cc3e585d34d3a1b7b926bacd6a2252e7b5da27e80c',
+        'https://img.freepik.com/foto-gratis/coche-3d-ciudad-vibrante-noche_23-2150796936.jpg?w=826&t=st=1701978803~exp=1701979403~hmac=50c2ee4afd60cc87bd3349852a4ecfe1aaabb814e74ab83cfd7d2c72548e82c2'
     ];
 
     const responsive = {
