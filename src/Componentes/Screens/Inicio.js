@@ -70,14 +70,22 @@ function Inicio() {
     ];
     return (
         <div>
-            <Carousel data-aos="fade-up">
+            <Carousel data-aos="fade-up">                
+            <Carousel.Item>
+                <img
+                    className="d-block w-100"
+                    src="https://img.freepik.com/psd-gratis/plantilla-diseno-banner-alquiler-coches-realista_23-2149438682.jpg?w=1480&t=st=1701977527~exp=1701978127~hmac=2d90c7946e7d2576f2a6fd0aa27ac2f7fea317f680d3c0da7358937a02e6ec8b"
+                    alt="slide"
+                />
+            </Carousel.Item>
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src="https://img.freepik.com/psd-gratis/plantilla-portada-facebook-autos-alquiler-autos_106176-2473.jpg?w=1800"
+                        src="https://img.freepik.com/psd-gratis/plantilla-portada-facebook-autos-alquiler-autos_106176-2473.jpg?w=1800&t=st=1701977413~exp=1701978013~hmac=332f85ed01697eac90111dd1657f01af8013d1848e723d826a1febe69bbd6404"
                         alt="slide"
                     />
                 </Carousel.Item>
+
             </Carousel>
 
             <Container className="my-4" data-aos="fade-right">
