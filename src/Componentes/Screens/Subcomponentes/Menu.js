@@ -48,6 +48,7 @@ function Menu() {
                     <Nav className="me-auto">
                         <Nav.Link className="letter-custom" href="/">Inicio</Nav.Link>
                         {isAuthenticated && <Nav.Link className="letter-custom" href="/reservas">Tus reservas</Nav.Link>}
+                        {isAuthenticated && <Nav.Link className="letter-custom" href="/usuarios">Usuarios</Nav.Link>}
                     </Nav>
                     <Button className="custom-button" onClick={handleLoginLogoutClick}>
                         {isAuthenticated ? 'Cerrar Sesión' : 'Iniciar Sesión'}
