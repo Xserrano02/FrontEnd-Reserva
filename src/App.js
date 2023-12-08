@@ -7,6 +7,7 @@ import Footer from './Componentes/Screens/Subcomponentes/Footer';
 import Reservas from './Componentes/Screens/Reservas';
 import Usuarios from './Componentes/Screens/Usuarios';
 import { KeycloakProvider } from './Componentes/Context/ContextKeyClock'
+import FormDetalle from './Componentes/Screens/FormDetalle';
 function App() {
   return (
     <div className="App">
@@ -18,6 +19,8 @@ function App() {
             <Route path="/Login" element={<Login />} />
             <Route path="/reservas" element={<Reservas />} />
             <Route path="/usuarios" element={<Usuarios />} />
+            <Route path="/Form" element={<FormDetalle />} />
+            
           </Routes>
           <Footer />
 
