@@ -6,7 +6,7 @@ import Menu from './Componentes/Screens/Subcomponentes/Menu';
 import Footer from './Componentes/Screens/Subcomponentes/Footer';
 import Reservas from './Componentes/Screens/Reservas';
 import Usuarios from './Componentes/Screens/Usuarios';
-import { KeycloakProvider } from './Componentes/Context/ContextKeyClock'
+
 function App() {
   return (
     <div className="App">
