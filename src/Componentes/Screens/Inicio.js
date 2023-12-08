@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios';
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Container, Carousel, Card, Button } from 'react-bootstrap';
@@ -11,25 +10,28 @@ function Inicio() {
 
     useEffect(() => {
         AOS.init({ duration: 2000 });
-        axios.get('https://localhost:44379/vehiculos/Listar')
+
+        fetch('https://localhost:44379/vehiculos/Listar')
             .then(response => {
-                setCarros(response.data);
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('La petición ha fallado');
             })
-            .catch(error => {
-                console.log(error);
-            });
+            .then(data => setCarros(data))
+            .catch(error => console.error('Error al realizar la petición:', error));
     }, []);
 
     return (
         <div>
             <Carousel data-aos="fade-up">
-            <Carousel.Item>
-                <img
-                    className="d-block w-100"
-                    src="https://img.freepik.com/psd-gratis/plantilla-diseno-banner-alquiler-coches-realista_23-2149438682.jpg?w=1480&t=st=1701977527~exp=1701978127~hmac=2d90c7946e7d2576f2a6fd0aa27ac2f7fea317f680d3c0da7358937a02e6ec8b"
-                    alt="slide"
-                />
-            </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src="https://img.freepik.com/psd-gratis/plantilla-diseno-banner-alquiler-coches-realista_23-2149438682.jpg?w=1480&t=st=1701977527~exp=1701978127~hmac=2d90c7946e7d2576f2a6fd0aa27ac2f7fea317f680d3c0da7358937a02e6ec8b"
+                        alt="slide"
+                    />
+                </Carousel.Item>
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
