@@ -33,39 +33,6 @@ const carros = [
         descripcion: "Descripción breve del carro 2."
     },
 
-    {
-        imagen: "https://www.elcarrocolombiano.com/wp-content/uploads/2022/01/kia-ev6-what-car-carro-del-an%CC%83o.jpg",
-        nombre: "Nombre del Carro 2",
-        modelo: "Modelo 2",
-        año: "2021",
-        descripcion: "Descripción breve del carro 2."
-    },
-
-    {
-        imagen: "https://www.elcarrocolombiano.com/wp-content/uploads/2022/01/kia-ev6-what-car-carro-del-an%CC%83o.jpg",
-        nombre: "Nombre del Carro 2",
-        modelo: "Modelo 2",
-        año: "2021",
-        descripcion: "Descripción breve del carro 2."
-    },
-
-    {
-        imagen: "https://www.elcarrocolombiano.com/wp-content/uploads/2022/01/kia-ev6-what-car-carro-del-an%CC%83o.jpg",
-        nombre: "Nombre del Carro 2",
-        modelo: "Modelo 2",
-        año: "2021",
-        descripcion: "Descripción breve del carro 2."
-    },
-
-    {
-        imagen: "https://www.elcarrocolombiano.com/wp-content/uploads/2022/01/kia-ev6-what-car-carro-del-an%CC%83o.jpg",
-        nombre: "Nombre del Carro 2",
-        modelo: "Modelo 2",
-        año: "2021",
-        descripcion: "Descripción breve del carro 2."
-    },
-
-
 ];
 
 

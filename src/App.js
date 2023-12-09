@@ -8,6 +8,7 @@ import Reservas from './Componentes/Screens/Reservas';
 import Usuarios from './Componentes/Screens/Usuarios';
 
 import FormDetalle from './Componentes/Screens/FormDetalle';
+import Vehiculos from './Componentes/Screens/Vehiculos';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
             <Route path="/reservas" element={<Reservas />} />
             <Route path="/usuarios" element={<Usuarios />} />
             <Route path="/Form" element={<FormDetalle />} />
-            
+            <Route path="/vehiculos" element={<Vehiculos />} />
           </Routes>
           <Footer />
 

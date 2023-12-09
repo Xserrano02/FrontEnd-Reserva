@@ -13,8 +13,6 @@ function Inicio() {
 
     const handleReservarClick = (id) => {
         setCarroSeleccionadoId(id);
-        console.log('Reservando carro con ID:', id); // Debería mostrar el ID
-
         navigate('/form', { state: { carroSeleccionadoId: id } });
     };
     
