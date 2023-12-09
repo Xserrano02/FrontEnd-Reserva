@@ -12,9 +12,9 @@ function FormDetalle() {
     const [emailEnviado, setEmailEnviado] = useState(false);
     const [mensajeError, setMensajeError] = useState('');
     const location = useLocation();
-    const { carroSeleccionadoId } = location.state || {};
-
-    console.log(carroSeleccionadoId); // Para ver específicamente el ID del carro
+    //const { carroSeleccionadoId } = location.state || {};
+    const { carroSeleccionado } = location.state || {};
+    //console.log(carroSeleccionadoId); // Para ver específicamente el ID del carro
     console.log('Estado recibido en FormDetalle:', location.state);
 
 
@@ -64,8 +64,8 @@ function FormDetalle() {
         <div className='container mb-5 col-4' style={{marginTop: "5rem", borderRadius:"10px",padding:"3rem",background: "linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 29%, rgba(93,3,0,1) 63%)"    }}>
             <Form onSubmit={sendEmail} >
 
-            <div className="card-header" style={{color: "white"}}>{carroSeleccionadoId}</div>
-            <img src="https://www.elcarrocolombiano.com/wp-content/uploads/2022/01/kia-ev6-what-car-carro-del-an%CC%83o.jpg" className="img-thumbnail mb-2" alt="..."/>
+            <div className="card-header" style={{color: "white"}}>{carroSeleccionado.marca + ' '+carroSeleccionado.modelo}</div>
+            <img src={carroSeleccionado.urlImagen} className="img-thumbnail mb-2" alt="..."/>
 
 
             <Form.Group className="mb-3">

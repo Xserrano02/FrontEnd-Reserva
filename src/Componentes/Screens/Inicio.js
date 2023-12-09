@@ -8,12 +8,15 @@ import { json,useNavigate  } from "react-router-dom";
 
 function Inicio() {
     const [carros, setCarros] = useState([]);
-    const [carroSeleccionadoId, setCarroSeleccionadoId] = useState(null);
+    //const [carroSeleccionadoId, setCarroSeleccionadoId] = useState(null);
     const navigate = useNavigate();
+    const [carroSeleccionado, setCarroSeleccionado] = useState(null);
 
-    const handleReservarClick = (id) => {
-        setCarroSeleccionadoId(id);
-        navigate('/form', { state: { carroSeleccionadoId: id } });
+    const handleReservarClick = (carro) => {
+        //setCarroSeleccionadoId(id);
+        setCarroSeleccionado(carro);
+
+        navigate('/form', { state: { carroSeleccionado: carro } });
     };
     
 
@@ -25,7 +28,7 @@ function Inicio() {
             .then(response => {
                 if (response.ok) {
                     return response.json();
-                    console.log(json);    
+                    console.log(response.json());
                 }
                 throw new Error('La petición ha fallado');
             })
@@ -65,7 +68,10 @@ function Inicio() {
                                     Año: {carro.anio}<br />
                                     Precio por día: {carro.precio_por_dia} USD
                                 </Card.Text>
-                                <Button variant="primary" onClick={() => handleReservarClick(carro.id)}>Reservar</Button>
+                                <Button variant="primary" 
+                                //onClick={() => handleReservarClick(carro.iD_Vehiculo)}
+                                onClick={() => handleReservarClick(carro)}
+                                >Reservar</Button>
                             </Card.Body>
                         </Card>
                     ))}
