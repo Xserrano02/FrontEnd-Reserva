@@ -5,14 +5,12 @@ import { Container, Carousel, Card, Button } from 'react-bootstrap';
 import SobreNosotros from "./Subcomponentes/SobreNosotros";
 import Caro from "./Subcomponentes/Carousel";
 import { json,useNavigate  } from "react-router-dom";
-import keycloak from '../Context/ContextKeyClock';
 
 function Inicio() {
     const [carros, setCarros] = useState([]);
     //const [carroSeleccionadoId, setCarroSeleccionadoId] = useState(null);
     const navigate = useNavigate();
     const [carroSeleccionado, setCarroSeleccionado] = useState(null);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const handleReservarClick = (carro) => {
         //setCarroSeleccionadoId(id);
@@ -20,19 +18,11 @@ function Inicio() {
 
         navigate('/form', { state: { carroSeleccionado: carro } });
     };
-
+    
 
 
     useEffect(() => {
         AOS.init({ duration: 2000 });
-
-        const updateAuthenticationStatus = () => {
-            setIsAuthenticated(keycloak.authenticated);
-        };
-
-        keycloak.onAuthSuccess = updateAuthenticationStatus;
-        keycloak.onAuthLogout = updateAuthenticationStatus;
-        updateAuthenticationStatus();
 
         fetch('https://localhost:44379/vehiculos/Listar')
             .then(response => {
@@ -78,13 +68,10 @@ function Inicio() {
                                     Año: {carro.anio}<br />
                                     Precio por día: {carro.precio_por_dia} USD
                                 </Card.Text>
-                                {isAuthenticated &&
-                                    <Button variant="primary"
-                                        //onClick={() => handleReservarClick(carro.iD_Vehiculo)}
-                                        onClick={() => handleReservarClick(carro)}
-                                    >Reservar</Button>
-                                }
-
+                                <Button variant="primary" 
+                                //onClick={() => handleReservarClick(carro.iD_Vehiculo)}
+                                onClick={() => handleReservarClick(carro)}
+                                >Reservar</Button>
                             </Card.Body>
                         </Card>
                     ))}
