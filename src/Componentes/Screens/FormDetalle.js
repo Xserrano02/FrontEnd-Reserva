@@ -1,3 +1,6 @@
+
+
+
 import React, { useState } from 'react';
 import { Form, Button,img } from 'react-bootstrap';
 import emailjs from 'emailjs-com';
@@ -48,7 +51,7 @@ function FormDetalle() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Aquí puedes manejar el envío del formulario, como enviar los datos a un servidor
+
         console.log(formData);
     };
 
@@ -77,7 +80,7 @@ function FormDetalle() {
                     <option value="">Seleccione una opción</option>
                     <option value="tipo1">Tipo 1</option>
                     <option value="tipo2">Tipo 2</option>
-                    {/* Más opciones */}
+
                 </Form.Select>
             </Form.Group>
 

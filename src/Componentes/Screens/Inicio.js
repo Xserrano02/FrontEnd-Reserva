@@ -4,9 +4,19 @@ import "aos/dist/aos.css";
 import { Container, Carousel, Card, Button } from 'react-bootstrap';
 import SobreNosotros from "./Subcomponentes/SobreNosotros";
 import Caro from "./Subcomponentes/Carousel";
+import { json,useNavigate  } from "react-router-dom";
 
 function Inicio() {
     const [carros, setCarros] = useState([]);
+    const [carroSeleccionadoId, setCarroSeleccionadoId] = useState(null);
+    const navigate = useNavigate();
+
+    const handleReservarClick = (id) => {
+        setCarroSeleccionadoId(id);
+        navigate('/form', { state: { carroSeleccionadoId: id } });
+    };
+    
+
 
     useEffect(() => {
         AOS.init({ duration: 2000 });
@@ -15,6 +25,7 @@ function Inicio() {
             .then(response => {
                 if (response.ok) {
                     return response.json();
+                    console.log(json);    
                 }
                 throw new Error('La petición ha fallado');
             })
@@ -54,7 +65,7 @@ function Inicio() {
                                     Año: {carro.anio}<br />
                                     Precio por día: {carro.precio_por_dia} USD
                                 </Card.Text>
-                                <Button variant="primary">Reservar</Button>
+                                <Button variant="primary" onClick={() => handleReservarClick(carro.id)}>Reservar</Button>
                             </Card.Body>
                         </Card>
                     ))}
