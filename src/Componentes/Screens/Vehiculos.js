@@ -7,6 +7,9 @@ function Vehiculos() {
     const [vehiculoEditar, setVehiculoEditar] = useState({});
     const [showModal, setShowModal] = useState(false);
 
+    const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJjQGdtYWlsLmNvbSIsIm5iZiI6MTcwMjExMDUzNSwiZXhwIjoxNzAyMTEwODM1LCJpYXQiOjE3MDIxMTA1MzV9.8jTg3A4U8noR8nuh2UWy3g3VBKzNcIBXka2ff8qa91A';
+
+
     const obtenerVehiculos = () => {
         fetch('https://localhost:44379/vehiculos/Listar')
             .then(response => response.json())
@@ -20,6 +23,7 @@ function Vehiculos() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${TOKEN}`
             },
             body: JSON.stringify(nuevoVehiculo),
         }).then(() => {
@@ -38,6 +42,7 @@ function Vehiculos() {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${TOKEN}`
             },
             body: JSON.stringify(vehiculoEditar),
         }).then(() => {
@@ -49,6 +54,10 @@ function Vehiculos() {
     const eliminarVehiculo = (id) => {
         fetch(`https://localhost:44379/vehiculos/Eliminar/${id}`, {
             method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${TOKEN}`
+            },
         }).then(() => obtenerVehiculos());
     };
 
