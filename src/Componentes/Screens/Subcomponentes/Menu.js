@@ -1,24 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../../Estilos/Menu.css';
 import keycloak from '../../Context/ContextKeyClock';
+import { AuthContext } from '../../Context/AuthContext';
 
 function Menu() {
     const [scrolled, setScrolled] = useState(false);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const navigate = useNavigate();
+    const { isAuthenticated } = useContext(AuthContext);
 
     useEffect(() => {
-        const updateAuthenticationStatus = () => {
-            setIsAuthenticated(keycloak.authenticated);
-        };
-
-        keycloak.onAuthSuccess = updateAuthenticationStatus;
-        keycloak.onAuthLogout = updateAuthenticationStatus;
-
-        updateAuthenticationStatus();
-
         const handleScroll = () => {
             const isScrolled = window.scrollY > 50;
             setScrolled(isScrolled);
