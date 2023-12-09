@@ -67,11 +67,13 @@ function Vehiculos() {
                         value={nuevoVehiculo.marca}
                         onChange={(e) => setNuevoVehiculo({ ...nuevoVehiculo, marca: e.target.value })}
                     />
+                    <Form.Label>Modelo</Form.Label>
                     <Form.Control
                         type="text"
                         value={nuevoVehiculo.modelo}
                         onChange={(e) => setNuevoVehiculo({ ...nuevoVehiculo, modelo: e.target.value })}
                     />
+                    <Form.Label>Modelo</Form.Label>
                     <Form.Control
                         type="text"
                         value={nuevoVehiculo.anio}
@@ -83,27 +85,30 @@ function Vehiculos() {
             </Form>
 
             <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th>Marca</th>
-                        <th>Modelo</th>
-                        <th>Año</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {vehiculos.map((vehiculo) => (
-                        <tr key={vehiculo.iD_Vehiculo}>
-                            <td>{vehiculo.marca}</td>
-                            <td>{vehiculo.modelo}</td>
-                            <td>
-                                <Button onClick={() => mostrarModalEditar(vehiculo)}>Editar</Button>
-                                <Button onClick={() => eliminarVehiculo(vehiculo.iD_Vehiculo)} variant="danger">Eliminar</Button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
+    <thead>
+        <tr>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Año</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {vehiculos.map((vehiculo) => (
+            <tr key={vehiculo.iD_Vehiculo}>
+                <td>{vehiculo.marca}</td>
+                <td>{vehiculo.modelo}</td>
+                <td>{vehiculo.anio}</td>
+                <td>
+                    <Button onClick={() => mostrarModalEditar(vehiculo)}>Editar</Button>
+                    {' '} 
+                    <Button onClick={() => eliminarVehiculo(vehiculo.iD_Vehiculo)} variant="danger">Eliminar</Button>
+                </td>
+            </tr>
+        ))}
+    </tbody>
+</Table>
+
 
             <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
