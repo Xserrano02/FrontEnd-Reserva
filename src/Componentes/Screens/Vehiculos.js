@@ -60,29 +60,26 @@ function Vehiculos() {
         <div className='container' style={{marginTop:'100px', marginBottom:'100px'}}>
             <h3>Agrega un nuevo vehiculo</h3>
             <Form onSubmit={agregarVehiculo}>
-                <Form.Group style={{margin: '20px 0'}}>
+                <Form.Group style={{ margin: '20px 0' }}>
                     <Form.Label>Marca</Form.Label>
                     <Form.Control
                         type="text"
                         value={nuevoVehiculo.marca}
                         onChange={(e) => setNuevoVehiculo({ ...nuevoVehiculo, marca: e.target.value })}
                     />
-                    <Form.Label>Modelo</Form.Label>
                     <Form.Control
                         type="text"
-                        value={nuevoVehiculo.marca}
-                        onChange={(e) => setNuevoVehiculo({ ...nuevoVehiculo, marca: e.target.value })}
+                        value={nuevoVehiculo.modelo}
+                        onChange={(e) => setNuevoVehiculo({ ...nuevoVehiculo, modelo: e.target.value })}
                     />
-
-                    <Form.Label>Año</Form.Label>
                     <Form.Control
                         type="text"
-                        value={nuevoVehiculo.marca}
-                        onChange={(e) => setNuevoVehiculo({ ...nuevoVehiculo, marca: e.target.value })}
+                        value={nuevoVehiculo.anio}
+                        onChange={(e) => setNuevoVehiculo({ ...nuevoVehiculo, anio: e.target.value })}
                     />
                 </Form.Group>
- 
-                <Button style={{margin: '10px 0'}} variant="primary" type="submit">Agregar Vehículo</Button>
+
+                <Button style={{ margin: '10px 0' }} variant="primary" type="submit">Agregar Vehículo</Button>
             </Form>
 
             <Table striped bordered hover>
@@ -113,27 +110,24 @@ function Vehiculos() {
                     <Modal.Title>Editar Vehículo</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                <Form.Group style={{margin: '20px 0'}}>
-                    <Form.Label>Marca</Form.Label>
-                    <Form.Control
-                        type="text"
-                        value={nuevoVehiculo.marca}
-                        onChange={(e) => setNuevoVehiculo({ ...nuevoVehiculo, marca: e.target.value })}
-                    />
-                    <Form.Label>Modelo</Form.Label>
-                    <Form.Control
-                        type="text"
-                        value={nuevoVehiculo.marca}
-                        onChange={(e) => setNuevoVehiculo({ ...nuevoVehiculo, marca: e.target.value })}
-                    />
+                    <Form.Group style={{ margin: '20px 0' }}>
+                        <Form.Control
+                            type="text"
+                            value={vehiculoEditar.marca}
+                            onChange={(e) => setVehiculoEditar({ ...vehiculoEditar, marca: e.target.value })}
+                        />
+                        <Form.Control
+                            type="text"
+                            value={vehiculoEditar.modelo}
+                            onChange={(e) => setVehiculoEditar({ ...vehiculoEditar, modelo: e.target.value })}
+                        />
+                        <Form.Control
+                            type="text"
+                            value={vehiculoEditar.anio}
+                            onChange={(e) => setVehiculoEditar({ ...vehiculoEditar, anio: e.target.value })}
+                        />
 
-                    <Form.Label>Año</Form.Label>
-                    <Form.Control
-                        type="text"
-                        value={nuevoVehiculo.marca}
-                        onChange={(e) => setNuevoVehiculo({ ...nuevoVehiculo, marca: e.target.value })}
-                    />
-                </Form.Group>
+                    </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={() => setShowModal(false)}>
