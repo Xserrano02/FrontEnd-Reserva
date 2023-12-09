@@ -3,15 +3,18 @@ import { Table, Button, Form, Modal } from 'react-bootstrap';
 
 function Vehiculos() {
     const [vehiculos, setVehiculos] = useState([]);
-    const [nuevoVehiculo, setNuevoVehiculo] = useState({ marca: '', modelo: '', anio: '', urlImagen: '', precio_por_dia: 0 });
+    const [nuevoVehiculo, setNuevoVehiculo] = useState({ iD_Vehiculo: 0, marca: '', modelo: '', anio: '', urlImagen: '', precio_por_dia: 0 });
     const [vehiculoEditar, setVehiculoEditar] = useState({});
     const [showModal, setShowModal] = useState(false);
 
     const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJjQGdtYWlsLmNvbSIsIm5iZiI6MTcwMjExMDUzNSwiZXhwIjoxNzAyMTEwODM1LCJpYXQiOjE3MDIxMTA1MzV9.8jTg3A4U8noR8nuh2UWy3g3VBKzNcIBXka2ff8qa91A';
 
-
     const obtenerVehiculos = () => {
-        fetch('https://localhost:44379/vehiculos/Listar')
+        fetch('https://localhost:44379/vehiculos/Listar', {
+            headers: {
+                'Authorization': `Bearer ${TOKEN}`
+            }
+        })
             .then(response => response.json())
             .then(data => setVehiculos(data))
             .catch(error => console.error('Error:', error));
@@ -28,7 +31,7 @@ function Vehiculos() {
             body: JSON.stringify(nuevoVehiculo),
         }).then(() => {
             obtenerVehiculos();
-            setNuevoVehiculo({ marca: '', modelo: '', anio: '', urlImagen: '', precio_por_dia: 0 });
+            setNuevoVehiculo({ iD_Vehiculo: 0, marca: '', modelo: '', anio: '', urlImagen: '', precio_por_dia: 0 });
         });
     };
 
@@ -82,42 +85,52 @@ function Vehiculos() {
                         value={nuevoVehiculo.modelo}
                         onChange={(e) => setNuevoVehiculo({ ...nuevoVehiculo, modelo: e.target.value })}
                     />
-                    <Form.Label>Modelo</Form.Label>
+                    <Form.Label>Año</Form.Label>
                     <Form.Control
                         type="text"
                         value={nuevoVehiculo.anio}
                         onChange={(e) => setNuevoVehiculo({ ...nuevoVehiculo, anio: e.target.value })}
                     />
+                    <Form.Label>URL de la Imagen</Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={nuevoVehiculo.urlImagen}
+                        onChange={(e) => setNuevoVehiculo({ ...nuevoVehiculo, urlImagen: e.target.value })}
+                    />
+                    <Form.Label>Precio por Día</Form.Label>
+                    <Form.Control
+                        type="number"
+                        value={nuevoVehiculo.precio_por_dia}
+                        onChange={(e) => setNuevoVehiculo({ ...nuevoVehiculo, precio_por_dia: e.target.value })}
+                    />
                 </Form.Group>
-
                 <Button style={{ margin: '10px 0' }} variant="primary" type="submit">Agregar Vehículo</Button>
             </Form>
 
             <Table striped bordered hover>
-    <thead>
-        <tr>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>Año</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        {vehiculos.map((vehiculo) => (
-            <tr key={vehiculo.iD_Vehiculo}>
-                <td>{vehiculo.marca}</td>
-                <td>{vehiculo.modelo}</td>
-                <td>{vehiculo.anio}</td>
-                <td>
-                    <Button onClick={() => mostrarModalEditar(vehiculo)}>Editar</Button>
-                    {' '} 
-                    <Button onClick={() => eliminarVehiculo(vehiculo.iD_Vehiculo)} variant="danger">Eliminar</Button>
-                </td>
-            </tr>
-        ))}
-    </tbody>
-</Table>
-
+                <thead>
+                    <tr>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Año</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {vehiculos.map((vehiculo) => (
+                        <tr key={vehiculo.iD_Vehiculo}>
+                            <td>{vehiculo.marca}</td>
+                            <td>{vehiculo.modelo}</td>
+                            <td>{vehiculo.anio}</td>
+                            <td>
+                                <Button onClick={() => mostrarModalEditar(vehiculo)}>Editar</Button>
+                                {' '}
+                                <Button onClick={() => eliminarVehiculo(vehiculo.iD_Vehiculo)} variant="danger">Eliminar</Button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </Table>
 
             <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
@@ -125,6 +138,7 @@ function Vehiculos() {
                 </Modal.Header>
                 <Modal.Body>
                     <Form.Group style={{ margin: '20px 0' }}>
+  
                         <Form.Control
                             type="text"
                             value={vehiculoEditar.marca}
@@ -140,7 +154,11 @@ function Vehiculos() {
                             value={vehiculoEditar.anio}
                             onChange={(e) => setVehiculoEditar({ ...vehiculoEditar, anio: e.target.value })}
                         />
-
+                        <Form.Control
+                            type="text"
+                            value={vehiculoEditar.urlImagen}
+                            onChange={(e) => setVehiculoEditar({ ...vehiculoEditar, anio: e.target.value })}
+                        />
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
