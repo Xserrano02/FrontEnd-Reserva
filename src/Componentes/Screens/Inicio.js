@@ -71,10 +71,10 @@ function Inicio() {
                                     Año: {carro.anio}<br />
                                     Precio por día: {carro.precio_por_dia} USD
                                 </Card.Text>
-                                {isAuthenticated && 
-                                    <Button variant="primary" onClick={() => handleReservarClick(carro)}>
-                                        Reservar
-                                    </Button>
+                                {isAuthenticated &&
+                                    <Button variant="primary"
+                                        onClick={() => handleReservarClick(carro)}
+                                    >Reservar</Button>
                                 }
                             </Card.Body>
                         </Card>
