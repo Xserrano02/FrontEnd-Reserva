@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { Form, Button,img } from 'react-bootstrap';
 import emailjs from 'emailjs-com';
+import { useLocation } from 'react-router-dom';
 
 
 
 function FormDetalle() {
     const [emailEnviado, setEmailEnviado] = useState(false);
     const [mensajeError, setMensajeError] = useState('');
+    const location = useLocation();
+    const { carroSeleccionadoId } = location.state || {};
 
-
+    console.log(carroSeleccionadoId); // Para ver específicamente el ID del carro
+    console.log('Estado recibido en FormDetalle:', location.state);
 
 
     const sendEmail = (e) => {
@@ -57,7 +61,7 @@ function FormDetalle() {
         <div className='container mb-5 col-4' style={{marginTop: "5rem", borderRadius:"10px",padding:"3rem",background: "linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 29%, rgba(93,3,0,1) 63%)"    }}>
             <Form onSubmit={sendEmail} >
 
-            <div className="card-header" style={{color: "white"}}>NombreCarro</div>
+            <div className="card-header" style={{color: "white"}}>{carroSeleccionadoId}</div>
             <img src="https://www.elcarrocolombiano.com/wp-content/uploads/2022/01/kia-ev6-what-car-carro-del-an%CC%83o.jpg" className="img-thumbnail mb-2" alt="..."/>
 
 
