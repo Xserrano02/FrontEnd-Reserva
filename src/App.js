@@ -9,11 +9,14 @@ import Usuarios from './Componentes/Screens/Usuarios';
 
 import FormDetalle from './Componentes/Screens/FormDetalle';
 import Vehiculos from './Componentes/Screens/Vehiculos';
+import { AuthProvider } from './Componentes/Context/AuthContext';
 
 function App() {
   return (
     <div className="App">
-      <Router>
+
+      <AuthProvider>
+        <Router>
 
           <Menu />
           <Routes>
@@ -26,7 +29,10 @@ function App() {
           </Routes>
           <Footer />
 
-      </Router>
+        </Router>
+
+      </AuthProvider>
+
     </div>
   );
 }

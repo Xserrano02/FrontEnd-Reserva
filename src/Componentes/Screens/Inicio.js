@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Container, Carousel, Card, Button } from 'react-bootstrap';
 import SobreNosotros from "./Subcomponentes/SobreNosotros";
 import Caro from "./Subcomponentes/Carousel";
 import { json,useNavigate  } from "react-router-dom";
+import { AuthContext } from '../Context/AuthContext';
 
 function Inicio() {
     const [carros, setCarros] = useState([]);
     //const [carroSeleccionadoId, setCarroSeleccionadoId] = useState(null);
     const navigate = useNavigate();
     const [carroSeleccionado, setCarroSeleccionado] = useState(null);
+
+    const { isAuthenticated } = useContext(AuthContext);
 
     const handleReservarClick = (carro) => {
         //setCarroSeleccionadoId(id);
@@ -68,10 +71,13 @@ function Inicio() {
                                     Año: {carro.anio}<br />
                                     Precio por día: {carro.precio_por_dia} USD
                                 </Card.Text>
+                                {isAuthenticated && 
                                 <Button variant="primary" 
                                 //onClick={() => handleReservarClick(carro.iD_Vehiculo)}
                                 onClick={() => handleReservarClick(carro)}
                                 >Reservar</Button>
+                                }
+
                             </Card.Body>
                         </Card>
                     ))}
