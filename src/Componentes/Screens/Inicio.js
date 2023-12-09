@@ -4,18 +4,28 @@ import "aos/dist/aos.css";
 import { Container, Carousel, Card, Button } from 'react-bootstrap';
 import SobreNosotros from "./Subcomponentes/SobreNosotros";
 import Caro from "./Subcomponentes/Carousel";
-import { useNavigate } from "react-router-dom";
+import { json,useNavigate  } from "react-router-dom";
 import keycloak from '../Context/ContextKeyClock';
 
 function Inicio() {
     const [carros, setCarros] = useState([]);
+    //const [carroSeleccionadoId, setCarroSeleccionadoId] = useState(null);
     const navigate = useNavigate();
+    const [carroSeleccionado, setCarroSeleccionado] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    const handleReservarClick = (carro) => {
+        //setCarroSeleccionadoId(id);
+        setCarroSeleccionado(carro);
+
+        navigate('/form', { state: { carroSeleccionado: carro } });
+    };
+
+
 
     useEffect(() => {
         AOS.init({ duration: 2000 });
 
-        // Actualizar el estado de autenticación
         const updateAuthenticationStatus = () => {
             setIsAuthenticated(keycloak.authenticated);
         };
@@ -28,16 +38,13 @@ function Inicio() {
             .then(response => {
                 if (response.ok) {
                     return response.json();
+                    console.log(response.json());
                 }
                 throw new Error('La petición ha fallado');
             })
             .then(data => setCarros(data))
             .catch(error => console.error('Error al realizar la petición:', error));
     }, []);
-
-    const handleReservarClick = (carro) => {
-        navigate('/form', { state: { carro: carro } });
-    };
 
     return (
         <div>
@@ -73,15 +80,17 @@ function Inicio() {
                                 </Card.Text>
                                 {isAuthenticated &&
                                     <Button variant="primary"
+                                        //onClick={() => handleReservarClick(carro.iD_Vehiculo)}
                                         onClick={() => handleReservarClick(carro)}
                                     >Reservar</Button>
                                 }
+
                             </Card.Body>
                         </Card>
                     ))}
                 </div>
             </Container>
-
+      
             <SobreNosotros data-aos="fade-left"/>
             <Caro data-aos="fade-right"/>
         </div>
