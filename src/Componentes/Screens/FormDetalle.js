@@ -45,7 +45,7 @@ function FormDetalle() {
 
     const [formDatasend, setFormDatasend] = useState({
         clienteId: '2',
-        idVehiculo: '2',
+        idVehiculo: carroSeleccionado.idVehiculo,
         diasReserva: '',
         direccionEntrega: '',    
         transaccionRealizada:"false"
@@ -64,10 +64,10 @@ function FormDetalle() {
     };
 
     const sendPostRequest = async () => {
-        const authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJjQGdtYWlsLmNvbSIsIm5iZiI6MTcwMjExNzcwNywiZXhwIjoxNzMzNjUzNzA3LCJpYXQiOjE3MDIxMTc3MDd9.FE-v1GE50ng4Oty7xVZEEX6etoUdGKm6lzANyA85NGU";  // Reemplaza esto con tu token real
+        const authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsidHJhbnNhY2Npb25yZXNvdXJjZWlkIl0sInVzZXJfbmFtZSI6ImNjYWx6YWRpYUB1ZmcuZWR1LnN2IiwiYXV0aG9yaXRpZXMiOlsiVVNFUiJdLCJqdGkiOiJmNDlkMmM5NS0wYjE3LTQ4Y2QtYThjNy0yZTEwNThlZTE1N2IiLCJjbGllbnRfaWQiOiJ0cmFuc2FjY2lvbmFwcCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.1XHGAEQPomXv28sT5nivkig5TIyh5Aq_G64SUZu9HCk";  // Reemplaza esto con tu token real
     
         try {
-            const response = await fetch('http://localhost:8080/Reserva', {
+            const response = await fetch('https://localhost:8080/Reserva', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -80,11 +80,12 @@ function FormDetalle() {
                 throw new Error(`Error: ${response.status}`);
             }
     
-            const result = await response.json();
+            const result = await response.json(formDatasend);
             console.log('Respuesta del servidor:', result);
             // Manejar la respuesta exitosa aquí
         } catch (error) {
             console.error('Error al enviar la solicitud POST:', error);
+            console.log()
             // Manejar errores aquí
         }
     };

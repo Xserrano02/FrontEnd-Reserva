@@ -7,10 +7,10 @@ function Vehiculos() {
     const [vehiculoEditar, setVehiculoEditar] = useState({});
     const [showModal, setShowModal] = useState(false);
 
-    const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJjQGdtYWlsLmNvbSIsIm5iZiI6MTcwMjExNzcwNywiZXhwIjoxNzMzNjUzNzA3LCJpYXQiOjE3MDIxMTc3MDd9.FE-v1GE50ng4Oty7xVZEEX6etoUdGKm6lzANyA85NGU';
+    const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJjQGdtYWlsLmNvbSIsIm5iZiI6MTcwMjEzMTI4NywiZXhwIjoxNzQ1MzMxMjg3LCJpYXQiOjE3MDIxMzEyODd9.iNv3x2xwcsCHVSiSX8jB1DDWLFgJdVWqKJMuK1dPulg';
 
     const obtenerVehiculos = () => {
-        fetch('https://localhost:44379/vehiculos/Listar', {
+        fetch('https://localhost:44379/vehiculos/ListarAdmin', {
             headers: {
                 'Authorization': `Bearer ${TOKEN}`
             }
@@ -31,7 +31,7 @@ function Vehiculos() {
             body: JSON.stringify(nuevoVehiculo),
         }).then(() => {
             obtenerVehiculos();
-            setNuevoVehiculo({ iD_Vehiculo: 0, marca: '', modelo: '', anio: '', urlImagen: '', precio_por_dia: 0 });
+            setNuevoVehiculo({ iD_Vehiculo: 0, marca: '', modelo: '', anio: '', urlImagen: '', precio_por_dia: 0, estado:0 });
         });
     };
 
@@ -57,6 +57,16 @@ function Vehiculos() {
     const eliminarVehiculo = (id) => {
         fetch(`https://localhost:44379/vehiculos/Eliminar?idVehiculo=${id}`, {
             method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${TOKEN}`
+            },
+        }).then(() => obtenerVehiculos());
+    };
+
+    const cambiarEstado = (id,estado) => {
+        fetch(`https://localhost:44379/vehiculos/ActualizarEstado?iD_Vehiculo=${id}&estado=${estado}`, {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${TOKEN}`
@@ -103,6 +113,9 @@ function Vehiculos() {
                         value={nuevoVehiculo.precio_por_dia}
                         onChange={(e) => setNuevoVehiculo({ ...nuevoVehiculo, precio_por_dia: e.target.value })}
                     />
+
+                    
+
                 </Form.Group>
                 <Button style={{ margin: '10px 0' }} variant="primary" type="submit">Agregar Vehículo</Button>
             </Form>
@@ -113,6 +126,7 @@ function Vehiculos() {
                         <th>Marca</th>
                         <th>Modelo</th>
                         <th>Año</th>
+                        <th>Estado</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -122,10 +136,17 @@ function Vehiculos() {
                             <td>{vehiculo.marca}</td>
                             <td>{vehiculo.modelo}</td>
                             <td>{vehiculo.anio}</td>
+                            <td>{vehiculo.estado === 0 ? "Disponible" : "Reservado"}</td>
                             <td>
                                 <Button onClick={() => mostrarModalEditar(vehiculo)}>Editar</Button>
                                 {' '}
                                 <Button onClick={() => eliminarVehiculo(vehiculo.iD_Vehiculo)} variant="danger">Eliminar</Button>
+                                {' '}
+                                <Button onClick={() => cambiarEstado(vehiculo.iD_Vehiculo,1)} variant="danger">Deshabilitar</Button>
+                                {' '}
+                                <Button onClick={() => cambiarEstado(vehiculo.iD_Vehiculo,0)} variant="success">Habilitar</Button>
+
+
                             </td>
                         </tr>
                     ))}
@@ -157,7 +178,7 @@ function Vehiculos() {
                         <Form.Control
                             type="text"
                             value={vehiculoEditar.urlImagen}
-                            onChange={(e) => setVehiculoEditar({ ...vehiculoEditar, anio: e.target.value })}
+                            onChange={(e) => setVehiculoEditar({ ...vehiculoEditar, urlImagen: e.target.value })}
                         />
                     </Form.Group>
                 </Modal.Body>
